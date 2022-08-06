@@ -1,0 +1,23 @@
+﻿name: "terraform-init-validate"
+description: "validates a terraform configuration"
+inputs:
+  terraform-folder:
+    description: "folder where your terraform configuration is"
+    required: true
+    default: 'terraform/transaction-service'
+  access-key:
+    description: "access key"
+    required: true
+  secret-key:
+    description: "secret key"
+    required: true
+  use-backend:
+    description: "boolean to specify if backend configuration needs to be considered. Accepted values: true, false"
+    required: true
+    default: 'false'
+runs:
+  using: "composite"
+  steps:
+    - name: Running script
+      run: ${{ github.action_path }}/../terraform-init-validate.sh ${{ inputs.terraform-folder }} ${{ inputs.access-key }} ${{ inputs.secret-key }} ${{ inputs.use-backend }}
+      shell: bash

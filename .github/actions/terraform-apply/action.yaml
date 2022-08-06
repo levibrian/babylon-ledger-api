@@ -1,0 +1,30 @@
+﻿name: "terraform-apply"
+description: "Applies a terraform configuration based on a previous terraform plan file output."
+inputs:
+  region:
+    description: "aws region name"
+    required: true
+  access-key:
+    description: "access key"
+    required: true
+  secret-key:
+    description: "secret key"
+    required: true
+  terraform-folder:
+    description: "folder where your terraform configuration is"
+    required: true
+  environment:
+    description: "3 letter word to define the environment to deploy."
+    required: true
+  stack-name:
+    description: "the stack name identifier."
+    required: false
+  terraform-plan-file:
+    description: "file where terraform will put the proposed plan"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - run: ${{ github.action_path }}/../terraform-apply.sh ${{ inputs.region }} ${{ inputs.access-key }} ${{ inputs.secret-key }} ${{ inputs.terraform-folder }} ${{ inputs.environment }} ${{ inputs.stack-name }} ${{ inputs.terraform-plan-file }}
+      shell: bash

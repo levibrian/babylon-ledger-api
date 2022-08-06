@@ -30,15 +30,15 @@ jobs:
   
       - name: Restore dependencies
         run: dotnet restore
-        working-directory: src/Babylon.Investments
+        working-directory: src/Babylon.Ledger
         
       - name: Build solution
         run: dotnet build --no-restore
-        working-directory: src/Babylon.Investments
+        working-directory: src/Babylon.Ledger
         
       - name: Run unit tests
         run: dotnet test --no-build --verbosity normal
-        working-directory: src/Babylon.Investments
+        working-directory: src/Babylon.Ledger
   
       - name: Terraform format
         id: fmt

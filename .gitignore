@@ -61,6 +61,13 @@ project.lock.json
 project.fragment.lock.json
 artifacts/
 
+# Terraform
+terraform/.terraform/
+.terraform/
+# Rider
+.idea/
+.idea
+
 # StyleCop
 StyleCopReport.xml
 
@@ -106,6 +113,9 @@ ipch/
 *.cachefile
 *.VC.db
 *.VC.VC.opendb
+
+# Visual Studio 2015
+.vs/
 
 # Visual Studio profiler
 *.psess

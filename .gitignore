@@ -64,6 +64,7 @@ artifacts/
 # Terraform
 terraform/.terraform/
 .terraform/
+.terraform*
 # Rider
 .idea/
 .idea

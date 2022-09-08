@@ -36,7 +36,7 @@ jobs:
         
       - name: Build solution
         run: dotnet build --no-restore
-        working-directory: src/*
+        working-directory: src/*/*.csproj
         continue-on-error: false
           
       - name: Run unit tests

@@ -91,7 +91,7 @@ module "api_gateway" {
   source = "terraform-aws-modules/apigateway-v2/aws"
 
   name          = local.ledger_api_gateway_name
-  description   = "Babylon Investments Api Gateway."
+  description   = "Babylon Ledger Api Gateway."
   protocol_type = "HTTP"
 
   cors_configuration = {
@@ -165,8 +165,8 @@ module "ledger_lambda" {
   version = "2.23.0"
 
   function_name = local.ledger_lambda_name
-  description   = "Lambda to store and analyze an investment portfolio."
-  handler       = "Babylon.Investments.Api::Babylon.Investments.Api.LambdaEntryPoint::FunctionHandlerAsync"
+  description   = "Lambda to store and analyze any personal ledger."
+#  handler       = "Babylon.Investments.Api::Babylon.Investments.Api.LambdaEntryPoint::FunctionHandlerAsync"
   runtime       = "dotnet6.0"
   memory_size   = 512
   timeout       = 60
@@ -201,7 +201,7 @@ module "dynamodb_table" {
 
   name      = local.entry_dynamodb_table_name
   hash_key  = "ClientIdentifier"
-  range_key = "TransactionId"
+  range_key = "EntryId"
 
   attributes = [
     {
@@ -209,7 +209,7 @@ module "dynamodb_table" {
       type = "S"
     },
     {
-      name = "TransactionId"
+      name = "EntryId"
       type = "S"
     }
   ]
@@ -257,7 +257,7 @@ module "lambda_security_group" {
   version = "~> 4.0"
 
   name        = "${local.ledger_resource_base_name}-lambda-security-group"
-  description = "Lambda security group for babylon Investments Lambda"
+  description = "Lambda security group for babylon ledger Lambda"
   vpc_id      = module.vpc.vpc_id
 
   computed_ingress_with_source_security_group_id = [

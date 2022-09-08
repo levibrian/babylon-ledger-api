@@ -36,12 +36,12 @@ jobs:
         
       - name: Build solution
         run: dotnet build --no-restore
-        working-directory: src/*/*.csproj
+        working-directory: src/Babylon.Ledger
         continue-on-error: false
           
       - name: Run unit tests
         run: dotnet test --no-build --verbosity normal
-        working-directory: src/*
+        working-directory: src/Babylon.Ledger
         continue-on-error: false
       
       - name: Terraform format

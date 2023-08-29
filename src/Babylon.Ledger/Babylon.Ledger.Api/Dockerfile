@@ -5,11 +5,17 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
+
 COPY ["Babylon.Ledger.Api/Babylon.Ledger.Api.csproj", "Babylon.Ledger.Api/"]
+COPY ["Babylon.Ledger.Domain/Babylon.Ledger.Domain.csproj", "Babylon.Ledger.Domain/"]
+
 RUN dotnet restore "Babylon.Ledger.Api/Babylon.Ledger.Api.csproj"
+RUN dotnet restore "Babylon.Ledger.Domain/Babylon.Ledger.Domain.csproj"
+
 COPY . .
-WORKDIR "/src/Babylon.Ledger.Api"
-RUN dotnet build "Babylon.Ledger.Api.csproj" -c Release -o /app/build
+WORKDIR "/src"
+
+RUN dotnet build "Babylon.Ledger.Api/Babylon.Ledger.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "Babylon.Ledger.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false

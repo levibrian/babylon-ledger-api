@@ -19,8 +19,9 @@
     </ItemGroup>
 
 
+
     <ItemGroup>
-      <Folder Include="Domain\Features\Incomes\" />
+      <ProjectReference Include="..\Babylon.Ledger.Domain\Babylon.Ledger.Domain.csproj" />
     </ItemGroup>
 
 </Project>

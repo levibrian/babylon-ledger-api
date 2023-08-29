@@ -3,6 +3,7 @@
   <component name="UserContentModel">
     <attachedFolders>
       <Path>../../../babylon-ledger-api</Path>
+      <Path>../../src</Path>
     </attachedFolders>
     <explicitIncludes />
     <explicitExcludes />

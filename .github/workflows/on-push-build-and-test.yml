@@ -5,13 +5,14 @@ on:
     branches:
     - main
     - development
+    - feature/*
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dotnet-version: [ '3.1.x' ]
+        dotnet-version: [ '7.x' ]
 
     steps:
       - name: Checkout repository content
@@ -31,15 +32,18 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
         working-directory: src/Babylon.Ledger
+        continue-on-error: false
         
       - name: Build solution
         run: dotnet build --no-restore
         working-directory: src/Babylon.Ledger
-        
+        continue-on-error: false
+          
       - name: Run unit tests
         run: dotnet test --no-build --verbosity normal
         working-directory: src/Babylon.Ledger
-  
+        continue-on-error: false
+      
       - name: Terraform format
         id: fmt
         run: terraform fmt -check
